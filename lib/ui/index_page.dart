@@ -1,4 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_sample/routes/app_router.dart';
 import 'package:firebase_sample/routes/routes.dart';
@@ -38,21 +39,29 @@ class _IndexPageState extends State<IndexPage> {
                 onPressed: () => AppRouter.pushNamed(Routes.analytics),
                 style: AppStyles.elevatedButtonStyle(context: context, width: 150.h),
                 child: const Text('Analytics')
-            )
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            ElevatedButton(
+                onPressed: () => crashApp(),
+                style: AppStyles.elevatedButtonStyle(context: context, width: 150.h),
+                child: const Text('Crash app')
+            ),
           ],
         ),
       ),
     );
   }
 
-  void trackScreen(String name) async {
+  trackScreen(String name) async {
     await FirebaseAnalytics.instance.logScreenView(
         screenName: name,
         screenClass: name
     );
   }
 
-  void initFcmToken() async {
+  initFcmToken() async {
     var messaging = FirebaseMessaging.instance;
 
     // On iOS, this helps to take the user permissions
@@ -97,5 +106,10 @@ class _IndexPageState extends State<IndexPage> {
       debugPrint('notification: ${message.notification}');
       NotificationUtils.showNotification(message);
     });
+  }
+
+  crashApp() async {
+    await FirebaseCrashlytics.instance.log('Force crash');
+    FirebaseCrashlytics.instance.crash();
   }
 }
