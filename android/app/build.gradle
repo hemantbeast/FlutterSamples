@@ -49,6 +49,7 @@ android {
         applicationId "com.andronerds.firebase_sample"
         minSdkVersion 23
         targetSdkVersion 32
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

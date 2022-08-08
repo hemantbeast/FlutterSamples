@@ -1,4 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_sample/routes/app_router.dart';
 import 'package:firebase_sample/routes/routes.dart';
 import 'package:firebase_sample/styles/app_styles.dart';
@@ -11,10 +12,8 @@ class IndexPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAnalytics.instance.logScreenView(
-      screenName: 'Index',
-      screenClass: 'Index'
-    );
+    trackScreen('Index');
+    initFcmToken();
 
     return Scaffold(
       appBar: AppWidgets.appBar('Flutter sample'),
@@ -22,7 +21,7 @@ class IndexPage extends StatelessWidget {
         alignment: Alignment.center,
         padding: EdgeInsets.all(20.r),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ElevatedButton(
@@ -34,5 +33,57 @@ class IndexPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void trackScreen(String name) async {
+    await FirebaseAnalytics.instance.logScreenView(
+        screenName: name,
+        screenClass: name
+    );
+  }
+
+  void initFcmToken() async {
+    var messaging = FirebaseMessaging.instance;
+
+    // On iOS, this helps to take the user permissions
+    var settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+    debugPrint('User granted permission: ${settings.authorizationStatus}');
+
+    if (settings.authorizationStatus != AuthorizationStatus.authorized) {
+      return;
+    }
+
+    var fcmToken = await messaging.getToken();
+    debugPrint(fcmToken);
+
+    messaging.onTokenRefresh
+      .listen((token) {
+        debugPrint('refresh token: $token');
+      })
+      .onError((err) {
+        debugPrint(err);
+      });
+
+    // For handling the received notifications
+    FirebaseMessaging.onMessage
+      .listen((event) {
+        debugPrint('data: ${event.data}');
+        debugPrint('notification: ${event.notification}');
+      });
+
+    // For handling notification when the app is in background but not terminated
+    FirebaseMessaging.onMessageOpenedApp
+      .listen((RemoteMessage message) {
+        debugPrint('data: ${message.data}');
+        debugPrint('notification: ${message.notification}');
+    });
   }
 }
