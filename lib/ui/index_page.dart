@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_sample/routes/app_router.dart';
 import 'package:firebase_sample/routes/routes.dart';
 import 'package:firebase_sample/styles/app_styles.dart';
+import 'package:firebase_sample/utils/notification_utils.dart';
 import 'package:firebase_sample/widgets/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -77,6 +78,7 @@ class IndexPage extends StatelessWidget {
       .listen((event) {
         debugPrint('data: ${event.data}');
         debugPrint('notification: ${event.notification}');
+        NotificationUtils.showNotification(event);
       });
 
     // For handling notification when the app is in background but not terminated
@@ -84,6 +86,7 @@ class IndexPage extends StatelessWidget {
       .listen((RemoteMessage message) {
         debugPrint('data: ${message.data}');
         debugPrint('notification: ${message.notification}');
+        NotificationUtils.showNotification(message);
     });
   }
 }

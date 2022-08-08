@@ -1,19 +1,32 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_sample/routes/app_router.dart';
+import 'package:firebase_sample/utils/notification_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'firebase_options.dart';
+
+final FlutterLocalNotificationsPlugin localNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   await ScreenUtil.ensureScreenSize();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  await localNotificationsPlugin.initialize(NotificationUtils.initializationSettings,
+    onSelectNotification: (payload) {
+     if (payload != null) {
+       debugPrint('notification payload: $payload');
+     }
+    },
+  );
   runApp(const ProviderScope(child: MyApp()));
 }
 
