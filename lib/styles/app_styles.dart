@@ -18,7 +18,7 @@ class AppStyles {
         ),
         textStyle: TextStyle(
             color: Colors.white,
-            fontSize: 14.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.w600
         )
     );

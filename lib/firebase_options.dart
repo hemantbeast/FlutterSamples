@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '590005969071',
     projectId: 'fir-sample-9d7e1',
     storageBucket: 'fir-sample-9d7e1.appspot.com',
+    androidClientId: '590005969071-5b5onr5rlblqfdgcbe0pt21ujcrph7mm.apps.googleusercontent.com',
     iosClientId: '590005969071-1ed5glk39mi2tppbhgbinpcqqplgeklv.apps.googleusercontent.com',
     iosBundleId: 'com.andronerds.firebaseSample',
   );

@@ -48,6 +48,14 @@ class _IndexPageState extends State<IndexPage> {
                 style: AppStyles.elevatedButtonStyle(context: context, width: 150.h),
                 child: const Text('Crash app')
             ),
+            SizedBox(
+              height: 20.h,
+            ),
+            ElevatedButton(
+                onPressed: () => AppRouter.pushNamed(Routes.authentication),
+                style: AppStyles.elevatedButtonStyle(context: context, width: 150.h),
+                child: const Text('Authentication')
+            ),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:firebase_sample/routes/routes.dart';
 import 'package:firebase_sample/ui/analytics/analytics_page.dart';
+import 'package:firebase_sample/ui/authentication/authentication_page.dart';
 import 'package:firebase_sample/ui/index_page.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,11 @@ class AppRouter {
         return MaterialPageRoute<dynamic>(
           builder: (context) => const AnalyticsPage(),
           settings: const RouteSettings(name: Routes.analytics)
+        );
+      case Routes.authentication:
+        return MaterialPageRoute<dynamic>(
+            builder: (context) => const AuthenticationPage(),
+            settings: const RouteSettings(name: Routes.authentication)
         );
       default:
         return _errorRoute();
