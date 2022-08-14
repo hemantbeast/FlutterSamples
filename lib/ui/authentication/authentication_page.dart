@@ -1,9 +1,12 @@
 import 'package:firebase_sample/providers/authentication/authentication_provider.dart';
 import 'package:firebase_sample/providers/authentication/authentication_state.dart';
+import 'package:firebase_sample/routes/app_router.dart';
+import 'package:firebase_sample/routes/routes.dart';
 import 'package:firebase_sample/styles/app_styles.dart';
 import 'package:firebase_sample/widgets/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AuthenticationPage extends ConsumerStatefulWidget {
@@ -20,6 +23,7 @@ class _AuthenticationPageState extends ConsumerState<AuthenticationPage> {
   Widget build(BuildContext context) {
     var state = ref.watch(authenticationProvider);
     var event = ref.watch(authenticationProvider.notifier);
+    listenCallbacks(ref);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -67,12 +71,18 @@ class _AuthenticationPageState extends ConsumerState<AuthenticationPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ElevatedButton(
-                    onPressed: () => event.mapEvents(const AuthenticationEvent.login()),
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      event.mapEvents(const AuthenticationEvent.login());
+                    },
                     style: AppStyles.elevatedButtonStyle(context: context, width: 150.w),
                     child: const Text('Sign in')
                   ),
                   ElevatedButton(
-                      onPressed: () => event.mapEvents(const AuthenticationEvent.register()),
+                      onPressed: () {
+                        FocusScope.of(context).unfocus();
+                        event.mapEvents(const AuthenticationEvent.register());
+                      },
                       style: AppStyles.elevatedButtonStyle(context: context, width: 150.w),
                       child: const Text('Sign up')
                   ),
@@ -207,5 +217,21 @@ class _AuthenticationPageState extends ConsumerState<AuthenticationPage> {
       suffixIcon: suffixIcon,
       suffixIconConstraints: BoxConstraints(minHeight: 2.h, minWidth: 2.w)
     );
+  }
+
+  listenCallbacks(WidgetRef ref) {
+    ref.listen<AuthenticationState>(authenticationProvider, (previous, next) {
+      next.failureOrSuccess.fold(() {}, (a) => a.fold(
+              (message) => Fluttertoast.showToast(msg: message, toastLength: Toast.LENGTH_SHORT),
+              (user) {
+                if (user != null) {
+                  Fluttertoast.showToast(msg: 'Logged in successfully.', toastLength: Toast.LENGTH_SHORT);
+                  AppRouter.pushNamed(Routes.userInfo, args: user);
+                } else {
+                  Fluttertoast.showToast(msg: 'Login failed.', toastLength: Toast.LENGTH_SHORT);
+                }
+              }
+      ));
+    });
   }
 }

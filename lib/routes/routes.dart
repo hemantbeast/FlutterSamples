@@ -9,4 +9,6 @@ class Routes {
   static const String analytics = '/analytics';
 
   static const String authentication = '/authentication';
+
+  static const String userInfo = '/userInfo';
 }

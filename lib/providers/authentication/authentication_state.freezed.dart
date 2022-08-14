@@ -19,7 +19,7 @@ mixin _$AuthenticationState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   bool get passwordVisibility => throw _privateConstructorUsedError;
-  Option<Either<String, bool>> get failureOrSuccess =>
+  Option<Either<String, User?>> get failureOrSuccess =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $AuthenticationStateCopyWith<$Res> {
       {String email,
       String password,
       bool passwordVisibility,
-      Option<Either<String, bool>> failureOrSuccess});
+      Option<Either<String, User?>> failureOrSuccess});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$AuthenticationStateCopyWithImpl<$Res>
       failureOrSuccess: failureOrSuccess == freezed
           ? _value.failureOrSuccess
           : failureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<String, bool>>,
+              as Option<Either<String, User?>>,
     ));
   }
 }
@@ -87,7 +87,7 @@ abstract class _$$_AuthenticationStateCopyWith<$Res>
       {String email,
       String password,
       bool passwordVisibility,
-      Option<Either<String, bool>> failureOrSuccess});
+      Option<Either<String, User?>> failureOrSuccess});
 }
 
 /// @nodoc
@@ -124,7 +124,7 @@ class __$$_AuthenticationStateCopyWithImpl<$Res>
       failureOrSuccess: failureOrSuccess == freezed
           ? _value.failureOrSuccess
           : failureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Option<Either<String, bool>>,
+              as Option<Either<String, User?>>,
     ));
   }
 }
@@ -145,7 +145,7 @@ class _$_AuthenticationState implements _AuthenticationState {
   @override
   final bool passwordVisibility;
   @override
-  final Option<Either<String, bool>> failureOrSuccess;
+  final Option<Either<String, User?>> failureOrSuccess;
 
   @override
   String toString() {
@@ -185,7 +185,7 @@ abstract class _AuthenticationState implements AuthenticationState {
           {required final String email,
           required final String password,
           required final bool passwordVisibility,
-          required final Option<Either<String, bool>> failureOrSuccess}) =
+          required final Option<Either<String, User?>> failureOrSuccess}) =
       _$_AuthenticationState;
 
   @override
@@ -195,7 +195,7 @@ abstract class _AuthenticationState implements AuthenticationState {
   @override
   bool get passwordVisibility;
   @override
-  Option<Either<String, bool>> get failureOrSuccess;
+  Option<Either<String, User?>> get failureOrSuccess;
   @override
   @JsonKey(ignore: true)
   _$$_AuthenticationStateCopyWith<_$_AuthenticationState> get copyWith =>

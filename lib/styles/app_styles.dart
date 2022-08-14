@@ -23,4 +23,20 @@ class AppStyles {
         )
     );
   }
+
+  static TextStyle headerTextStyle() {
+    return TextStyle(
+      color: Colors.grey.shade500,
+      fontSize: 12.sp,
+      fontWeight: FontWeight.w400
+    );
+  }
+
+  static TextStyle valueTextStyle() {
+    return TextStyle(
+      color: Colors.grey.shade900,
+      fontSize: 14.sp,
+      fontWeight: FontWeight.w500
+    );
+  }
 }

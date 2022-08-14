@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_sample/providers/authentication/user_info_page.dart';
 import 'package:firebase_sample/routes/routes.dart';
 import 'package:firebase_sample/ui/analytics/analytics_page.dart';
 import 'package:firebase_sample/ui/authentication/authentication_page.dart';
@@ -29,6 +31,12 @@ class AppRouter {
         return MaterialPageRoute<dynamic>(
             builder: (context) => const AuthenticationPage(),
             settings: const RouteSettings(name: Routes.authentication)
+        );
+      case Routes.userInfo:
+        var user = settings.arguments as User;
+        return MaterialPageRoute<dynamic>(
+            builder: (context) => UserInfoPage(user: user),
+            settings: const RouteSettings(name: Routes.userInfo)
         );
       default:
         return _errorRoute();

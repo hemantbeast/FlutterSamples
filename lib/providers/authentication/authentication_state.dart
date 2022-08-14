@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'authentication_state.freezed.dart';
@@ -9,7 +10,7 @@ class AuthenticationState with _$AuthenticationState {
     required String email,
     required String password,
     required bool passwordVisibility,
-    required Option<Either<String, bool>> failureOrSuccess,
+    required Option<Either<String, User?>> failureOrSuccess,
   }) = _AuthenticationState;
 
   factory AuthenticationState.initial() => AuthenticationState(
