@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_sample/providers/register/register_state.dart';
 import 'package:firebase_sample/utils/common_utils.dart';
@@ -30,6 +31,8 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
       failureOrSuccess = left('Name is required');
     } else if (state.email.trim().isEmpty) {
       failureOrSuccess = left('Email is required');
+    } else if (!EmailValidator.validate(state.email.trim())) {
+      failureOrSuccess = left('Email is not valid');
     } else if (state.password.trim().isEmpty) {
       failureOrSuccess = left('Password is required');
     } else if (state.confirmPassword.trim().isEmpty) {
@@ -57,9 +60,11 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
       if (user != null) {
         await user.updateDisplayName(state.name);
         await user.reload();
+        user.sendEmailVerification();
         CommonUtils.hideLoader();
 
-        state = state.copyWith(failureOrSuccess: optionOf(right(user)));
+        var refreshedUser = auth.currentUser;
+        state = state.copyWith(failureOrSuccess: optionOf(right(refreshedUser)));
         return;
       }
 
