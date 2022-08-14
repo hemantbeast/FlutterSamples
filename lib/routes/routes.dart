@@ -11,4 +11,6 @@ class Routes {
   static const String authentication = '/authentication';
 
   static const String userInfo = '/userInfo';
+
+  static const String register = '/register';
 }

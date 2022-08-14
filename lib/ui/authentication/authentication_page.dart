@@ -81,7 +81,7 @@ class _AuthenticationPageState extends ConsumerState<AuthenticationPage> {
                   ElevatedButton(
                       onPressed: () {
                         FocusScope.of(context).unfocus();
-                        event.mapEvents(const AuthenticationEvent.register());
+                        AppRouter.pushNamed(Routes.register);
                       },
                       style: AppStyles.elevatedButtonStyle(context: context, width: 150.w),
                       child: const Text('Sign up')

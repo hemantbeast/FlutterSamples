@@ -19,7 +19,6 @@ class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
         passwordChanged: (value) => state = state.copyWith(password: value.password!),
         visibilityChanged: (value) => state = state.copyWith(passwordVisibility: value.visibility),
         login: (value) async => await login(),
-        register: (value) => register(),
         googleLogin: (value) => googleLogin(),
     );
   }
@@ -54,16 +53,14 @@ class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
 
       state = state.copyWith(failureOrSuccess: optionOf(right(null)));
     } on FirebaseAuthException catch (e) {
+      CommonUtils.hideLoader();
+
       if (e.code == 'user-not-found') {
         state = state.copyWith(failureOrSuccess: optionOf(left('No user found for that email.')));
       } else if (e.code == 'wrong-password') {
         state = state.copyWith(failureOrSuccess: optionOf(left('Wrong password provided.')));
       }
     }
-  }
-
-  register() {
-
   }
 
   googleLogin() {

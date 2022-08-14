@@ -210,7 +210,6 @@ mixin _$AuthenticationEvent {
     required TResult Function(String? password) passwordChanged,
     required TResult Function(bool visibility) visibilityChanged,
     required TResult Function() login,
-    required TResult Function() register,
     required TResult Function() googleLogin,
   }) =>
       throw _privateConstructorUsedError;
@@ -220,7 +219,6 @@ mixin _$AuthenticationEvent {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
   }) =>
       throw _privateConstructorUsedError;
@@ -230,7 +228,6 @@ mixin _$AuthenticationEvent {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
     required TResult orElse(),
   }) =>
@@ -241,7 +238,6 @@ mixin _$AuthenticationEvent {
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(VisibilityChanged value) visibilityChanged,
     required TResult Function(Login value) login,
-    required TResult Function(Register value) register,
     required TResult Function(GoogleLogin value) googleLogin,
   }) =>
       throw _privateConstructorUsedError;
@@ -251,7 +247,6 @@ mixin _$AuthenticationEvent {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
   }) =>
       throw _privateConstructorUsedError;
@@ -261,7 +256,6 @@ mixin _$AuthenticationEvent {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
     required TResult orElse(),
   }) =>
@@ -354,7 +348,6 @@ class _$EmailChanged implements EmailChanged {
     required TResult Function(String? password) passwordChanged,
     required TResult Function(bool visibility) visibilityChanged,
     required TResult Function() login,
-    required TResult Function() register,
     required TResult Function() googleLogin,
   }) {
     return emailChanged(email);
@@ -367,7 +360,6 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
   }) {
     return emailChanged?.call(email);
@@ -380,7 +372,6 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
     required TResult orElse(),
   }) {
@@ -397,7 +388,6 @@ class _$EmailChanged implements EmailChanged {
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(VisibilityChanged value) visibilityChanged,
     required TResult Function(Login value) login,
-    required TResult Function(Register value) register,
     required TResult Function(GoogleLogin value) googleLogin,
   }) {
     return emailChanged(this);
@@ -410,7 +400,6 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
   }) {
     return emailChanged?.call(this);
@@ -423,7 +412,6 @@ class _$EmailChanged implements EmailChanged {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
     required TResult orElse(),
   }) {
@@ -512,7 +500,6 @@ class _$PasswordChanged implements PasswordChanged {
     required TResult Function(String? password) passwordChanged,
     required TResult Function(bool visibility) visibilityChanged,
     required TResult Function() login,
-    required TResult Function() register,
     required TResult Function() googleLogin,
   }) {
     return passwordChanged(password);
@@ -525,7 +512,6 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
   }) {
     return passwordChanged?.call(password);
@@ -538,7 +524,6 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
     required TResult orElse(),
   }) {
@@ -555,7 +540,6 @@ class _$PasswordChanged implements PasswordChanged {
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(VisibilityChanged value) visibilityChanged,
     required TResult Function(Login value) login,
-    required TResult Function(Register value) register,
     required TResult Function(GoogleLogin value) googleLogin,
   }) {
     return passwordChanged(this);
@@ -568,7 +552,6 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
   }) {
     return passwordChanged?.call(this);
@@ -581,7 +564,6 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
     required TResult orElse(),
   }) {
@@ -672,7 +654,6 @@ class _$VisibilityChanged implements VisibilityChanged {
     required TResult Function(String? password) passwordChanged,
     required TResult Function(bool visibility) visibilityChanged,
     required TResult Function() login,
-    required TResult Function() register,
     required TResult Function() googleLogin,
   }) {
     return visibilityChanged(visibility);
@@ -685,7 +666,6 @@ class _$VisibilityChanged implements VisibilityChanged {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
   }) {
     return visibilityChanged?.call(visibility);
@@ -698,7 +678,6 @@ class _$VisibilityChanged implements VisibilityChanged {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
     required TResult orElse(),
   }) {
@@ -715,7 +694,6 @@ class _$VisibilityChanged implements VisibilityChanged {
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(VisibilityChanged value) visibilityChanged,
     required TResult Function(Login value) login,
-    required TResult Function(Register value) register,
     required TResult Function(GoogleLogin value) googleLogin,
   }) {
     return visibilityChanged(this);
@@ -728,7 +706,6 @@ class _$VisibilityChanged implements VisibilityChanged {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
   }) {
     return visibilityChanged?.call(this);
@@ -741,7 +718,6 @@ class _$VisibilityChanged implements VisibilityChanged {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
     required TResult orElse(),
   }) {
@@ -805,7 +781,6 @@ class _$Login implements Login {
     required TResult Function(String? password) passwordChanged,
     required TResult Function(bool visibility) visibilityChanged,
     required TResult Function() login,
-    required TResult Function() register,
     required TResult Function() googleLogin,
   }) {
     return login();
@@ -818,7 +793,6 @@ class _$Login implements Login {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
   }) {
     return login?.call();
@@ -831,7 +805,6 @@ class _$Login implements Login {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
     required TResult orElse(),
   }) {
@@ -848,7 +821,6 @@ class _$Login implements Login {
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(VisibilityChanged value) visibilityChanged,
     required TResult Function(Login value) login,
-    required TResult Function(Register value) register,
     required TResult Function(GoogleLogin value) googleLogin,
   }) {
     return login(this);
@@ -861,7 +833,6 @@ class _$Login implements Login {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
   }) {
     return login?.call(this);
@@ -874,7 +845,6 @@ class _$Login implements Login {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
     required TResult orElse(),
   }) {
@@ -887,134 +857,6 @@ class _$Login implements Login {
 
 abstract class Login implements AuthenticationEvent {
   const factory Login() = _$Login;
-}
-
-/// @nodoc
-abstract class _$$RegisterCopyWith<$Res> {
-  factory _$$RegisterCopyWith(
-          _$Register value, $Res Function(_$Register) then) =
-      __$$RegisterCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$RegisterCopyWithImpl<$Res>
-    extends _$AuthenticationEventCopyWithImpl<$Res>
-    implements _$$RegisterCopyWith<$Res> {
-  __$$RegisterCopyWithImpl(_$Register _value, $Res Function(_$Register) _then)
-      : super(_value, (v) => _then(v as _$Register));
-
-  @override
-  _$Register get _value => super._value as _$Register;
-}
-
-/// @nodoc
-
-class _$Register implements Register {
-  const _$Register();
-
-  @override
-  String toString() {
-    return 'AuthenticationEvent.register()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Register);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? email) emailChanged,
-    required TResult Function(String? password) passwordChanged,
-    required TResult Function(bool visibility) visibilityChanged,
-    required TResult Function() login,
-    required TResult Function() register,
-    required TResult Function() googleLogin,
-  }) {
-    return register();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? email)? emailChanged,
-    TResult Function(String? password)? passwordChanged,
-    TResult Function(bool visibility)? visibilityChanged,
-    TResult Function()? login,
-    TResult Function()? register,
-    TResult Function()? googleLogin,
-  }) {
-    return register?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? email)? emailChanged,
-    TResult Function(String? password)? passwordChanged,
-    TResult Function(bool visibility)? visibilityChanged,
-    TResult Function()? login,
-    TResult Function()? register,
-    TResult Function()? googleLogin,
-    required TResult orElse(),
-  }) {
-    if (register != null) {
-      return register();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(EmailChanged value) emailChanged,
-    required TResult Function(PasswordChanged value) passwordChanged,
-    required TResult Function(VisibilityChanged value) visibilityChanged,
-    required TResult Function(Login value) login,
-    required TResult Function(Register value) register,
-    required TResult Function(GoogleLogin value) googleLogin,
-  }) {
-    return register(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EmailChanged value)? emailChanged,
-    TResult Function(PasswordChanged value)? passwordChanged,
-    TResult Function(VisibilityChanged value)? visibilityChanged,
-    TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
-    TResult Function(GoogleLogin value)? googleLogin,
-  }) {
-    return register?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(EmailChanged value)? emailChanged,
-    TResult Function(PasswordChanged value)? passwordChanged,
-    TResult Function(VisibilityChanged value)? visibilityChanged,
-    TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
-    TResult Function(GoogleLogin value)? googleLogin,
-    required TResult orElse(),
-  }) {
-    if (register != null) {
-      return register(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Register implements AuthenticationEvent {
-  const factory Register() = _$Register;
 }
 
 /// @nodoc
@@ -1062,7 +904,6 @@ class _$GoogleLogin implements GoogleLogin {
     required TResult Function(String? password) passwordChanged,
     required TResult Function(bool visibility) visibilityChanged,
     required TResult Function() login,
-    required TResult Function() register,
     required TResult Function() googleLogin,
   }) {
     return googleLogin();
@@ -1075,7 +916,6 @@ class _$GoogleLogin implements GoogleLogin {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
   }) {
     return googleLogin?.call();
@@ -1088,7 +928,6 @@ class _$GoogleLogin implements GoogleLogin {
     TResult Function(String? password)? passwordChanged,
     TResult Function(bool visibility)? visibilityChanged,
     TResult Function()? login,
-    TResult Function()? register,
     TResult Function()? googleLogin,
     required TResult orElse(),
   }) {
@@ -1105,7 +944,6 @@ class _$GoogleLogin implements GoogleLogin {
     required TResult Function(PasswordChanged value) passwordChanged,
     required TResult Function(VisibilityChanged value) visibilityChanged,
     required TResult Function(Login value) login,
-    required TResult Function(Register value) register,
     required TResult Function(GoogleLogin value) googleLogin,
   }) {
     return googleLogin(this);
@@ -1118,7 +956,6 @@ class _$GoogleLogin implements GoogleLogin {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
   }) {
     return googleLogin?.call(this);
@@ -1131,7 +968,6 @@ class _$GoogleLogin implements GoogleLogin {
     TResult Function(PasswordChanged value)? passwordChanged,
     TResult Function(VisibilityChanged value)? visibilityChanged,
     TResult Function(Login value)? login,
-    TResult Function(Register value)? register,
     TResult Function(GoogleLogin value)? googleLogin,
     required TResult orElse(),
   }) {

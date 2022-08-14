@@ -31,7 +31,5 @@ class AuthenticationEvent with _$AuthenticationEvent {
 
   const factory AuthenticationEvent.login() = Login;
 
-  const factory AuthenticationEvent.register() = Register;
-
   const factory AuthenticationEvent.googleLogin() = GoogleLogin;
 }

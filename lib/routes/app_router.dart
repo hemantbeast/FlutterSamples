@@ -3,6 +3,7 @@ import 'package:firebase_sample/providers/authentication/user_info_page.dart';
 import 'package:firebase_sample/routes/routes.dart';
 import 'package:firebase_sample/ui/analytics/analytics_page.dart';
 import 'package:firebase_sample/ui/authentication/authentication_page.dart';
+import 'package:firebase_sample/ui/authentication/register_page.dart';
 import 'package:firebase_sample/ui/index_page.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,11 @@ class AppRouter {
             builder: (context) => UserInfoPage(user: user),
             settings: const RouteSettings(name: Routes.userInfo)
         );
+      case Routes.register:
+        return MaterialPageRoute<dynamic>(
+            builder: (context) => const RegisterPage(),
+            settings: const RouteSettings(name: Routes.register)
+        );
       default:
         return _errorRoute();
     }
@@ -69,7 +75,7 @@ class AppRouter {
   }
 
   static Future<dynamic> popAndPushNamed(String routeName, {dynamic args}) {
-    return navigatorKey.currentState!.popAndPushNamed(routeName);
+    return navigatorKey.currentState!.popAndPushNamed(routeName, arguments: args);
   }
 
   static Future<void> pop([dynamic result]) async {
