@@ -27,7 +27,7 @@ class AppStyles {
   static TextStyle headerTextStyle() {
     return TextStyle(
       color: Colors.grey.shade500,
-      fontSize: 12.sp,
+      fontSize: 13.sp,
       fontWeight: FontWeight.w400
     );
   }
@@ -35,7 +35,7 @@ class AppStyles {
   static TextStyle valueTextStyle() {
     return TextStyle(
       color: Colors.grey.shade900,
-      fontSize: 14.sp,
+      fontSize: 15.sp,
       fontWeight: FontWeight.w500
     );
   }

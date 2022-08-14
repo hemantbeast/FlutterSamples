@@ -1,12 +1,12 @@
-import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_sample/routes/app_router.dart';
 import 'package:firebase_sample/routes/routes.dart';
 import 'package:firebase_sample/styles/app_styles.dart';
+import 'package:firebase_sample/utils/common_utils.dart';
 import 'package:firebase_sample/widgets/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl/intl.dart';
 
 class UserInfoPage extends StatelessWidget {
@@ -34,8 +34,8 @@ class UserInfoPage extends StatelessWidget {
                 alignment: Alignment.topCenter,
               ),
             ),
-            const RSizedBox(
-              height: 15,
+            RSizedBox(
+              height: user.photoURL != null && user.photoURL!.isNotEmpty ? 25 : 15,
             ),
             Text.rich(
               TextSpan(
@@ -51,8 +51,11 @@ class UserInfoPage extends StatelessWidget {
                 ]
               )
             ),
-            const RSizedBox(
-              height: 15,
+            Visibility(
+              visible: user.email != null && user.email!.isNotEmpty,
+              child: const RSizedBox(
+                height: 15,
+              ),
             ),
             Visibility(
               visible: user.email != null && user.email!.isNotEmpty,
@@ -132,10 +135,7 @@ class UserInfoPage extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                    AppRouter.popUntil(Routes.authentication);
-                  },
+                  onPressed: () async => await userLogout(),
                   style: AppStyles.elevatedButtonStyle(context: context, width: 150.w),
                   child: const Text('Logout')
                 ),
@@ -145,5 +145,22 @@ class UserInfoPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  userLogout() async {
+    CommonUtils.showLoader();
+
+    if (user.providerData[0].providerId.contains('google')) {
+      await googleLogout();
+    }
+    await FirebaseAuth.instance.signOut();
+
+    CommonUtils.hideLoader();
+    AppRouter.popUntil(Routes.authentication);
+  }
+
+  googleLogout() async {
+    final GoogleSignIn signIn = GoogleSignIn();
+    await signIn.signOut();
   }
 }
