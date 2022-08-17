@@ -13,4 +13,6 @@ class Routes {
   static const String userInfo = '/userInfo';
 
   static const String register = '/register';
+
+  static const String phone = '/phone';
 }

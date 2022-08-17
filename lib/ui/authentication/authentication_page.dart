@@ -194,7 +194,7 @@ class _AuthenticationPageState extends ConsumerState<AuthenticationPage> {
                       ],
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () => AppRouter.pushNamed(Routes.phone),
                 ),
               )
             ],

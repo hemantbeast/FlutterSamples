@@ -5,12 +5,13 @@ class AppStyles {
   static ButtonStyle elevatedButtonStyle({
     required BuildContext context,
     double? width,
-    double? height
+    double? height,
+    bool? isDisable
   }) {
     height ??= 45.h;
 
     return ElevatedButton.styleFrom(
-        primary: Colors.blue,
+        primary: isDisable != null && isDisable ? Colors.grey : Colors.blue,
         fixedSize: width != null ? Size(width, height) : Size(double.infinity, height),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.r),

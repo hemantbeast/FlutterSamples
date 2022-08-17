@@ -3,6 +3,7 @@ import 'package:firebase_sample/providers/authentication/user_info_page.dart';
 import 'package:firebase_sample/routes/routes.dart';
 import 'package:firebase_sample/ui/analytics/analytics_page.dart';
 import 'package:firebase_sample/ui/authentication/authentication_page.dart';
+import 'package:firebase_sample/ui/authentication/phone_page.dart';
 import 'package:firebase_sample/ui/authentication/register_page.dart';
 import 'package:firebase_sample/ui/index_page.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,11 @@ class AppRouter {
             builder: (context) => const RegisterPage(),
             settings: const RouteSettings(name: Routes.register)
         );
+      case Routes.phone:
+        return MaterialPageRoute<dynamic>(
+            builder: (context) => const PhonePage(),
+            settings: const RouteSettings(name: Routes.phone)
+        );
       default:
         return _errorRoute();
     }
@@ -66,8 +72,8 @@ class AppRouter {
     return navigatorKey.currentState!.pushNamed(routeName, arguments: args);
   }
 
-  static Future<dynamic> pushNamedAndRemoveUntil(String routeName, {dynamic args}) {
-    return navigatorKey.currentState!.pushNamedAndRemoveUntil(routeName, (route) => false, arguments: args);
+  static Future<dynamic> pushNamedAndRemoveUntil(String routeName, String untilRoute, {dynamic args}) {
+    return navigatorKey.currentState!.pushNamedAndRemoveUntil(routeName, ModalRoute.withName(untilRoute), arguments: args);
   }
 
   static Future<dynamic> pushReplacement(String routeName) {
