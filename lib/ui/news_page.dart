@@ -14,15 +14,11 @@ class NewsPage extends StatelessWidget {
       ),
       body: BlocBuilder<NewsCubit, NewsState>(
         builder: (context, state) {
-          if (state is NewsInitial) {
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.blue),
-            );
-          } else if (state is NewsError) {
+          if (state.error.isNotEmpty) {
             return Center(
               child: Text(state.error),
             );
-          } else if (state is NewsData) {
+          } else if (state.newsList.isNotEmpty) {
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemCount: state.newsList.length,
@@ -75,8 +71,11 @@ class NewsPage extends StatelessWidget {
                 );
               },
             );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(color: Colors.blue),
+            );
           }
-          return Container();
         },
       ),
     );

@@ -10,7 +10,7 @@ part 'news_state.dart';
 class NewsCubit extends HydratedCubit<NewsState> {
   final NewsService service;
 
-  NewsCubit(this.service) : super(NewsInitial()) {
+  NewsCubit(this.service) : super(NewsState.initial()) {
     getNewsList();
   }
 
@@ -18,12 +18,12 @@ class NewsCubit extends HydratedCubit<NewsState> {
     var response = await service.getNews();
 
     if (response is BaseResponse<ErrorModel>) {
-      emit(NewsError(error: response.results!.message!));
+      emit(NewsState(error: response.results!.message!, newsList: const []));
       return;
     }
 
     if (response is BaseResponse<List<NewsModel>>) {
-      emit(NewsData(newsList: response.results!));
+      emit(NewsState(newsList: response.results!, error: ''));
     }
   }
 
@@ -31,7 +31,7 @@ class NewsCubit extends HydratedCubit<NewsState> {
   NewsState? fromJson(Map<String, dynamic> json) {
     try {
       final list = (json['news'] as List).map((e) => NewsModel.fromJson(e as Map<String, dynamic>)).toList();
-      return NewsData(newsList: list);
+      return NewsState(newsList: list, error: '');
     } catch (e) {
       return null;
     }
@@ -39,10 +39,6 @@ class NewsCubit extends HydratedCubit<NewsState> {
 
   @override
   Map<String, dynamic>? toJson(NewsState state) {
-    if (state is NewsData) {
-      return state.toJson();
-    } else {
-      return null;
-    }
+    return state.toJson();
   }
 }

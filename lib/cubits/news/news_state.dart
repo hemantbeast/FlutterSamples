@@ -1,32 +1,20 @@
 part of 'news_cubit.dart';
 
-abstract class NewsState extends Equatable {
-  const NewsState();
-}
-
-class NewsInitial extends NewsState {
-  @override
-  List<Object> get props => [];
-}
-
-class NewsData extends NewsState {
+class NewsState extends Equatable {
+  final String error;
   final List<NewsModel> newsList;
 
-  const NewsData({required this.newsList});
+  const NewsState({
+    required this.error,
+    required this.newsList,
+  });
+
+  factory NewsState.initial() => const NewsState(error: '', newsList: []);
 
   @override
-  List<Object?> get props => [newsList];
+  List<Object?> get props => [newsList, error];
 
   Map<String, dynamic> toJson() {
-    return {'news': newsList};
+    return {'error': error, 'news': newsList};
   }
-}
-
-class NewsError extends NewsState {
-  final String error;
-
-  const NewsError({required this.error});
-
-  @override
-  List<Object?> get props => [error];
 }
