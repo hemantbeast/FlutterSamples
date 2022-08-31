@@ -50,6 +50,22 @@ class NewsModel extends Equatable {
         language: json['language'] != null ? languageValues.map[json['language']] : null,
       );
 
+  Map<String, dynamic> toJson() => {
+        "title": title,
+        "link": link,
+        "keywords": keywords == null ? null : List<dynamic>.from(keywords!.map((x) => x)),
+        "creator": creator == null ? null : List<dynamic>.from(creator!.map((x) => x)),
+        "video_url": videoUrl,
+        "description": description,
+        "content": content,
+        "pubDate": pubDate?.toIso8601String(),
+        "image_url": imageUrl,
+        "source_id": sourceId,
+        "country": List<dynamic>.from(country!.map((x) => x)),
+        "category": List<dynamic>.from(category!.map((x) => categoryValues.reverse![x])),
+        "language": languageValues.reverse![language],
+      };
+
   @override
   List<Object?> get props => [
         title,
