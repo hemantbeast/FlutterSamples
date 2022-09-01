@@ -9,13 +9,16 @@ part 'news_state.dart';
 
 class NewsCubit extends HydratedCubit<NewsState> {
   final NewsService service;
+  int page = 0;
+  bool isFetching = false;
 
   NewsCubit(this.service) : super(NewsState.initial()) {
     getNewsList();
   }
 
   getNewsList() async {
-    var response = await service.getNews();
+    var response = await service.getNews(page: page != 0 ? page : null);
+    isFetching = false;
 
     if (response is BaseResponse<ErrorModel>) {
       emit(NewsState(error: response.results!.message!, newsList: const []));
@@ -24,6 +27,7 @@ class NewsCubit extends HydratedCubit<NewsState> {
 
     if (response is BaseResponse<List<NewsModel>>) {
       emit(NewsState(newsList: response.results!, error: ''));
+      page = response.nextPage!;
     }
   }
 

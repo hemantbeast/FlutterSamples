@@ -7,9 +7,14 @@ import 'package:news/utils/app_constants.dart';
 import 'package:news/utils/url.dart';
 
 class NewsService extends BaseService {
-  Future getNews({Language? language}) async {
+  Future getNews({Language? language, int? page}) async {
     try {
       var url = '${Url.newsUrl}&language=${_languageCode(language)}';
+
+      if (page != null) {
+        url += '&page=$page';
+      }
+
       var response = await apiRequest(url: url, method: ApiMethod.get);
 
       if (response != null) {
