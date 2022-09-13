@@ -62,10 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Wrap(
+        child: Stack(
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   flex: 8,
@@ -103,8 +104,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
+            Visibility(
+              visible: _isExpanded,
+              child: Container(
+                height: height!,
+                margin: const EdgeInsets.only(bottom: 40),
+                color: Colors.black.withOpacity(0.5),
+              ),
+            ),
             Transform.translate(
-              offset: _isExpanded ? const Offset(0, -220) : const Offset(0, 10),
+              offset: _isExpanded ? const Offset(0, 120) : const Offset(0, 320),
               child: InkWell(
                 onTap: () {
                   setState(() {
@@ -116,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.deepPurple,
                     borderRadius: BorderRadius.circular(7),
                   ),
-                  height: _isExpanded ? height! - 220 : height! - 450,
+                  height: _isExpanded ? height! - 250 : height! - 450,
                 ),
               ),
             )
