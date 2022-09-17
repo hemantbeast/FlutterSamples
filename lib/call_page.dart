@@ -164,10 +164,25 @@ class _CallPageState extends State<CallPage> {
           children: <Widget>[_videoView(views[0])],
         );
       case 2:
-        return Column(
+        return Stack(
+          alignment: Alignment.topRight,
           children: <Widget>[
-            _expandedVideoRow([views[0]]),
-            _expandedVideoRow([views[1]])
+            Container(
+              color: Colors.black,
+              child: _expandedVideoRow([views[1]]),
+            ),
+            Container(
+              height: 200,
+              width: 120,
+              margin: const EdgeInsets.only(top: 20, right: 20),
+              child: Card(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: _expandedVideoRow([views[0]]),
+              ),
+            ),
           ],
         );
       case 3:
