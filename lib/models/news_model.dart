@@ -1,13 +1,17 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:news/utils/app_constants.dart';
 import 'package:news/utils/enum_conversion.dart';
 
+part 'news_model.g.dart';
+
+@JsonSerializable()
 class NewsModel extends Equatable {
   final String? title;
   final String? link;
   final List<String>? keywords;
   final List<String>? creator;
-  final dynamic videoUrl;
+  final String? videoUrl;
   final String? description;
   final String? content;
   final DateTime? pubDate;
@@ -33,38 +37,9 @@ class NewsModel extends Equatable {
     this.language,
   });
 
-  factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
-        title: json['title'],
-        link: json['link'],
-        keywords: json['keywords'] == null ? null : List<String>.from(json['keywords'].map((x) => x)),
-        creator: json['creator'] == null ? null : List<String>.from(json['creator'].map((x) => x)),
-        videoUrl: json['video_url'],
-        description: json['description'],
-        content: json['content'],
-        pubDate: DateTime.parse(json['pubDate']),
-        imageUrl: json['image_url'],
-        sourceId: json['source_id'],
-        country: json['country'] != null ? List<String>.from(json['country'].map((x) => x)) : null,
-        category:
-            json['category'] != null ? List<Category>.from(json['category'].map((x) => categoryValues.map[x])) : null,
-        language: json['language'] != null ? languageValues.map[json['language']] : null,
-      );
+  factory NewsModel.fromJson(Map<String, dynamic> json) => _$NewsModelFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "title": title,
-        "link": link,
-        "keywords": keywords == null ? null : List<dynamic>.from(keywords!.map((x) => x)),
-        "creator": creator == null ? null : List<dynamic>.from(creator!.map((x) => x)),
-        "video_url": videoUrl,
-        "description": description,
-        "content": content,
-        "pubDate": pubDate?.toIso8601String(),
-        "image_url": imageUrl,
-        "source_id": sourceId,
-        "country": List<dynamic>.from(country!.map((x) => x)),
-        "category": List<dynamic>.from(category!.map((x) => categoryValues.reverse![x])),
-        "language": languageValues.reverse![language],
-      };
+  Map<String, dynamic> toJson() => _$NewsModelToJson(this);
 
   @override
   List<Object?> get props => [
