@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/cubits/news/news_cubit.dart';
 import 'package:news/models/news_model.dart';
+import 'package:news/ui/news_detail_page.dart';
 import 'package:video_player/video_player.dart';
 
 class NewsPage extends StatefulWidget {
@@ -72,37 +73,47 @@ class _NewsPageState extends State<NewsPage> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(7),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          _imageVideoView(_news[index]),
-                          const SizedBox(height: 10),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Text(
-                              _news[index].title ?? '',
-                              maxLines: 2,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return NewsDetailPage(news: _news[index]);
+                            }),
+                          );
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            _imageVideoView(_news[index]),
+                            const SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Text(
+                                _news[index].title ?? '',
+                                maxLines: 2,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(8, 5, 8, 8),
-                            child: Text(
-                              _news[index].description ?? _news[index].content ?? '',
-                              maxLines: 3,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(8, 5, 8, 8),
+                              child: Text(
+                                _news[index].description ?? _news[index].content ?? '',
+                                maxLines: 3,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
