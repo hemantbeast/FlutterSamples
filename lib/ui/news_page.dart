@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/cubits/news/news_cubit.dart';
 import 'package:news/models/news_model.dart';
+import 'package:video_player/video_player.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
@@ -75,19 +76,7 @@ class _NewsPageState extends State<NewsPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          CachedNetworkImage(
-                            imageUrl: _news[index].imageUrl ??
-                                'https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg',
-                            height: 200,
-                            fit: BoxFit.fitWidth,
-                            errorWidget: (context, url, error) {
-                              return Image.network(
-                                'https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg',
-                                height: 200,
-                                fit: BoxFit.fitWidth,
-                              );
-                            },
-                          ),
+                          _imageVideoView(_news[index]),
                           const SizedBox(height: 10),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -104,7 +93,7 @@ class _NewsPageState extends State<NewsPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(8, 5, 8, 8),
                             child: Text(
-                              _news[index].description ?? '',
+                              _news[index].description ?? _news[index].content ?? '',
                               maxLines: 3,
                               style: const TextStyle(
                                 fontSize: 14,
@@ -127,6 +116,43 @@ class _NewsPageState extends State<NewsPage> {
           }
         },
       ),
+    );
+  }
+
+  Widget _imageVideoView(NewsModel news) {
+    if (news.imageUrl != null && news.imageUrl!.isNotEmpty) {
+      return CachedNetworkImage(
+        imageUrl:
+            news.imageUrl ?? 'https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg',
+        height: 200,
+        fit: BoxFit.fitWidth,
+        errorWidget: (context, url, error) {
+          return Image.network(
+            'https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg',
+            height: 200,
+            fit: BoxFit.fitWidth,
+          );
+        },
+      );
+    } else if (news.videoUrl != null && news.videoUrl!.isNotEmpty) {
+      final controller = VideoPlayerController.network(news.videoUrl!)..initialize();
+
+      return controller.value.isInitialized
+          ? AspectRatio(
+              aspectRatio: controller.value.aspectRatio,
+              child: VideoPlayer(controller),
+            )
+          : _placeholderImage();
+    } else {
+      return _placeholderImage();
+    }
+  }
+
+  Widget _placeholderImage() {
+    return CachedNetworkImage(
+      imageUrl: 'https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg',
+      height: 200,
+      fit: BoxFit.fitWidth,
     );
   }
 }
