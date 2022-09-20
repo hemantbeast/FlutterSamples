@@ -1,4 +1,4 @@
-import 'package:agora_rtc_engine/rtc_engine.dart';
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:andro_call/call_page.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   final _channelController = TextEditingController();
   bool _validateError = false;
 
-  ClientRole? _role = ClientRole.Broadcaster;
+  ClientRoleType? _role = ClientRoleType.clientRoleBroadcaster;
 
   @override
   void dispose() {
@@ -52,11 +52,11 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: [
                 ListTile(
-                  title: Text(ClientRole.Broadcaster.toString()),
+                  title: Text(ClientRoleType.clientRoleBroadcaster.toString()),
                   leading: Radio(
-                    value: ClientRole.Broadcaster,
+                    value: ClientRoleType.clientRoleBroadcaster,
                     groupValue: _role,
-                    onChanged: (ClientRole? value) {
+                    onChanged: (ClientRoleType? value) {
                       setState(() {
                         _role = value;
                       });
@@ -64,11 +64,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 ListTile(
-                  title: Text(ClientRole.Audience.toString()),
+                  title: Text(ClientRoleType.clientRoleAudience.toString()),
                   leading: Radio(
-                    value: ClientRole.Audience,
+                    value: ClientRoleType.clientRoleAudience,
                     groupValue: _role,
-                    onChanged: (ClientRole? value) {
+                    onChanged: (ClientRoleType? value) {
                       setState(() {
                         _role = value;
                       });
