@@ -48,19 +48,27 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FlickVideoPlayer(
-        flickManager: flickManager,
-        systemUIOverlay: const [],
-        preferredDeviceOrientation: const [
-          DeviceOrientation.landscapeLeft,
-          DeviceOrientation.landscapeRight,
-        ],
-        flickVideoWithControls: FlickVideoWithControls(
-          controls: VideoControls(
-            onTap: () {
-              flickManager.flickControlManager?.pause();
-              Navigator.pop(context);
-            },
+      body: Container(
+        color: Colors.black,
+        child: Center(
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: FlickVideoPlayer(
+              flickManager: flickManager,
+              systemUIOverlay: const [],
+              preferredDeviceOrientation: const [
+                DeviceOrientation.landscapeLeft,
+                DeviceOrientation.landscapeRight,
+              ],
+              flickVideoWithControls: FlickVideoWithControls(
+                controls: VideoControls(
+                  onTap: () {
+                    flickManager.flickControlManager?.pause();
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            ),
           ),
         ),
       ),

@@ -60,7 +60,6 @@ class VideoNotifier extends StateNotifier<VideoState> {
       video.sources!.first,
       dir!.path,
       (progress) {
-        debugPrint(progress.toString());
         list.firstWhere((element) => element.title == video.title).progress = progress;
         state = state.copyWith(videoList: list);
       },
