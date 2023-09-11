@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="WearTheme" parent="android:Theme.Material">
+        <item name="android:colorPrimary">@color/purple200</item>
+        <item name="android:colorPrimaryDark">@color/purple700</item>
+        <item name="android:colorAccent">@color/teal200</item>
+        <item name="android:colorSecondary">@color/teal200</item>
+    </style>
+</resources>
