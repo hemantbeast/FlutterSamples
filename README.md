@@ -13,3 +13,4 @@ A few samples of Flutter project:
 - [VideoCall](https://github.com/hemantbeast/FlutterSamples/tree/video_call) - A video call sample app using Agora.io API.
 - [SimpleGame](https://github.com/hemantbeast/FlutterSamples/tree/simple_game) - A simple box fill game using riverpod & freezed.
 - [Videos](https://github.com/hemantbeast/FlutterSamples/tree/video_list) - A video list sample project to download & play the video using hive storage.
+- [Watch](https://github.com/hemantbeast/FlutterSamples/tree/watch_sample) - A sample project for passing data between mobile & watch.
